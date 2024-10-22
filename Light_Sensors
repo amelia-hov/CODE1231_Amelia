@@ -28,4 +28,25 @@ while True:
     led.value = False #Turn off the LED
     time.sleep(1) #Wait for 1 second.
 
-#above shows the 
+#above makes the LEDs blink
+
+
+import time 
+import board 
+import digitalio
+import neopixel
+
+button_a = digitalio.DigitalInOut(board.BUTTON_A)
+button_a.direction = digitalio.Direction.INPUT
+button_a.pull = digitalio.Pull.DOWN
+
+pixels = neopixel.NeoPixel(board.NEOPIXEL, 10, brightness=0.2)
+
+while True:
+    if button_a.value:  # If button A is pressed
+        pixels.fill((255, 0, 0))  # Turn all NeoPixels red
+    else:
+        pixels.fill((0, 0, 0))  # Turn off all NeoPixels
+        time.sleep(0.1)
+
+# If u press button a, the light becomes red. 
