@@ -1,0 +1,31 @@
+import time 
+import board 
+import neopixel
+
+pixels = neopixel.Neopixel(board.NEOPIXEL, 10, brightness=0.3)
+
+while True:
+    pixels.fill((255,0,0))
+    time.sleep(1)
+    pixels.fill((0,255,0))
+    time.sleep(1)
+    pixels.fill((0,0,255))
+    time.sleep(1)
+
+# above shows the the coding for how to show the colours red, green and blue. 
+
+
+import time 
+import board 
+import digitalio
+
+led = digitalio.DigitalInOut(board.D13) #Onboard LED
+led.direction = digitalio.Direction.OUTPUT
+
+while True:
+    led.value = True #Turn on the LED
+    time.sleep(1) #Wait for 1 second
+    led.value = False #Turn off the LED
+    time.sleep(1) #Wait for 1 second.
+
+#above shows the 
