@@ -1,0 +1,28 @@
+#include <Servo.h>
+
+Servo myServo; // Create a servo object
+#define IR_SENSOR A0 // Define the IR sensor connected to analog pin A0
+int lowerBound = 300;  // Replace with the raw value for 4 cm
+int upperBound = 400;  // Replace with the raw value for 5 cm
+
+void setup() {
+  myServo.attach(9); // Attach the servo to pin 9
+  myServo.write(0);  // Start servo at 0 degrees
+  Serial.begin(9600); // Initialize serial monitor for debugging
+}
+
+void loop() {
+  int currentDistance = analogRead(IR_SENSOR); // Read the distance from the sensor
+  Serial.println(currentDistance); // Debugging: Print the current distance
+
+  // Check if the object is within the 4-5 cm range
+  if (currentDistance >= lowerBound && currentDistance <= upperBound) {
+    Serial.println("Object Detected within Range!");
+    myServo.write(180); // Rotate servo to 180 degrees
+    delay(4000); // Wait for 4 seconds
+  } else {
+    myServo.write(0); // Rotate servo back to 0 degrees
+  }
+
+  delay(50); // Small delay for stability
+}
